@@ -3,8 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const expressSwagger = require('express-swagger-generator')(app);
-const PORT = process.env.PORT || 3000;
-
 
 const router = require('./app/router');
 
@@ -58,7 +56,5 @@ app.use((req, res, next) => {
 
 app.use('/v1/api/', router);
 
+module.exports = app;
 
-app.listen(PORT, () => {
-    console.log(`Server running on : localhost:${PORT}/v1`)
-});
