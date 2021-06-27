@@ -1,0 +1,12 @@
+node_modules/
+yarn-error.log
+.env
+.nyc_output
+couverture
+build / 
+config.md
+.DS_Store
+Thumbs.db
+yarn-error.log
+sqitch.conf
+coverage
