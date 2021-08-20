@@ -1,6 +1,6 @@
 const express = require("express"); // import express
-const appMock = require("../../app");
-const index = require("../../index.js");
+const appMockExpressSimulatingServerBehavior = require("../../app");
+const indexMock = require("../../index.js");
 const router = require("../router");
 const request = require("supertest");
 const bodyParser = require("body-parser");
@@ -8,14 +8,14 @@ const bodyParser = require("body-parser");
 //mock app server
 jest.mock("../../app");
 
-const app = express(); //an instance of an express // a fake express app
-app.use(bodyParser.json()); //this made it work
+const instanceOfApp = express(); //an instance of an express // a fake express app
+instanceOfApp.use(bodyParser.json()); //this made it work
 
-app.use("/themes", router); //
+instanceOfApp.use("/themes", router); //
 
 describe("testing-server-routes", () => {
   it("GET /themes - success", async () => {
-    const { body } = await request(app).get("/themes"); //use the request function that we can use the app// save the response to body variable
+    const { body } = await request(instanceOfApp).get("/themes"); //use the request function that we can use the app// save the response to body variable
     expect(body).toEqual([
       {
         id: 1,
