@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "migrate": "cd server && sqitch deploy",
+    "migrate:reset": "cd server && sqitch revert -y && cd ../ && npm run migrate",
+    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"]
   },
   "author": "julie-Anani",
   "license": "ISC",
